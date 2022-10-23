@@ -1,12 +1,17 @@
 class Persona:
-    def __init__(self):
-        self.nombre = 'Jorney'
-        self.apellido = 'Lopez'
-        self.edad = 27
+    def __init__(self,nombre, apellido, edad, *valores, **terminos):
+        self.nombre = nombre
+        self.apellido = apellido
+        self.edad = edad
+        self.valores = valores
+        self.terminos = terminos
+
+    def motrarDetalle(self):
+        print(f'{self.nombre} {self.apellido} {self.edad} {self.valores} {self.terminos}')
 
 
-perso = Persona()
+perso = Persona('Jorney','Lopez',27, '65664', 10 , 10 , m='manzana', p='per')
+perso.motrarDetalle()
 
-print(perso.nombre)
-print(perso.apellido)
-print(perso.edad)
+perso1 = Persona('Ismael','Lopez',0)
+Persona.motrarDetalle(perso1)
