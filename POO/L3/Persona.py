@@ -1,37 +1,21 @@
 class Persona:
-    def __init__(self,nombre, apellido, edad):
-        self._nombre = nombre
-        self._apellido = apellido
-        self._edad = edad
+    def __init__(self,nombre, edad):
+        self.nombre = nombre
+        self.edad = edad
 
-    # permite que sea llamado como si fuera atricuto
-    @property
-    def nombre(self):
-        return self._nombre
+    def __str__(self):
+        if self.nombre == 'Ismael':
+            return f'Persona: Nombre {self.nombre} Edad {self.edad} mes'
+        else:
+            return f'Persona: Nombre {self.nombre} Edad {self.edad} años'
 
-    @nombre.setter
-    def nombre(self, nombre):
-        self._nombre = nombre
+class Empleado(Persona):
+    def __init__(self, nombre, edad, sueldo):
+        super().__init__(nombre, edad)
+        self.sueldo = sueldo
 
-    @property
-    def apellido(self):
-        return self._apellido
+    def __str__(self):
+        return f'{super().__str__()} Sueldo: {self.sueldo}'
 
-    @apellido.setter
-    def apellido(self, apellido):
-        self._apellido = apellido
-
-    @property
-    def edad(self):
-        return self._edad
-
-    @edad.setter
-    def edad(self, edad):
-        self._edad = edad
-
-    def motrarDetalle(self):
-        print(f'{self._nombre} {self._apellido} {self._edad}')
-
-    def __del__(self):
-        print(f'Persona: {self._nombre} {self._apellido}')
-
+# empleado1 = Empleado('Ismael', 27, 5000)
+# print( f'{empleado1.nombre} {empleado1.edad} {empleado1.sueldo}')
