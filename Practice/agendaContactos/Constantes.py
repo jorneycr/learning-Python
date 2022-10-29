@@ -1,0 +1,2 @@
+CARPETA = 'contactos/'
+EXTENSION = '.txt'

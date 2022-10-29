@@ -1,9 +1,8 @@
 import os
 
 from Contacto import Contacto
+from Constantes import CARPETA, EXTENSION
 
-CARPETA = 'contactos/'
-EXTENSION = '.txt'
 
 def app():
     crear_directorio()
@@ -36,18 +35,24 @@ def agregar_contacto():
     print('Escriba los datos para el nuevo contacto')
     nombre_contacto = input('Nombre de Contacto:\r\n')
 
-    with open(CARPETA + nombre_contacto + EXTENSION, 'w') as archivo:
+    existe = os.path.isfile(CARPETA + nombre_contacto + EXTENSION)
 
-        tel_contacto = input('Agrega telefono:\r\n')
-        categoria_contacto = input('Categoria contacto: \r\n')
+    if not existe:
+        with open(CARPETA + nombre_contacto + EXTENSION, 'w') as archivo:
 
-        contacto = Contacto(nombre_contacto, tel_contacto, categoria_contacto)
+            tel_contacto = input('Agrega telefono:\r\n')
+            categoria_contacto = input('Categoria contacto: \r\n')
 
-        archivo.write('Nombre: ' + contacto.nombre + '\r\n')
-        archivo.write('Tel: ' + contacto.tel + '\r\n')
-        archivo.write('Categoria: ' + contacto.categoria + '\r\n')
+            contacto = Contacto(nombre_contacto, tel_contacto, categoria_contacto)
 
-        print('\r\n Contacto creado correctamente \r\n')
+            archivo.write('Nombre: ' + contacto.nombre + '\r\n')
+            archivo.write('Tel: ' + contacto.tel + '\r\n')
+            archivo.write('Categoria: ' + contacto.categoria + '\r\n')
+
+            print('\r\n Contacto creado correctamente \r\n')
+    else:
+        print('\r\nEse contacto ya existe! \r\n')
+        app()
 
 
 def editar_contacto():

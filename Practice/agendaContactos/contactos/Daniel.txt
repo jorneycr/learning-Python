@@ -1,0 +1,3 @@
+Nombre: Daniel
+Tel: 86184543
+Categoria: Cliente
