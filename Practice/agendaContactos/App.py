@@ -18,10 +18,8 @@ def app():
             if res:
                 app()
         elif opcion == 2:
-            res = editar_contacto()
+            editar_contacto()
             preguntar = False
-            if not res:
-                app()
         elif opcion == 3:
             ver_contacto()
             preguntar = False

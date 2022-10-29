@@ -1,4 +1,5 @@
 import os
+import time
 
 from Constantes import CARPETA, EXTENSION
 from Contacto import Contacto
@@ -28,10 +29,28 @@ def agregar_contacto():
 
 def editar_contacto():
     print('Escribe el nombre de contacto a editar')
-    nombre_anterior = input('Nombre que sea editar \r\n')
+    nombre_anterior = input('Cual contactot desea editar:\r\n')
     existe = existe_contacto(nombre_anterior)
     if existe:
         print('Puedes editar')
+        with open(CARPETA + nombre_anterior + EXTENSION, 'w') as archivo:
+
+            nombre_contacto = input('Agrega el nuevo nombre:\r\n')
+            tel_contacto = input('Agrega el nuevo  telefono:\r\n')
+            categoria_contacto = input('Agrega la nuevo categoria contacto: \r\n')
+
+            contacto = Contacto(nombre_contacto, tel_contacto, categoria_contacto)
+
+            archivo.write('Nombre: ' + contacto.nombre + '\r\n')
+            archivo.write('Tel: ' + contacto.tel + '\r\n')
+            archivo.write('Categoria: ' + contacto.categoria + '\r\n')
+
+            archivo.close()
+
+            os.rename(CARPETA + nombre_anterior + EXTENSION, CARPETA + nombre_contacto + EXTENSION)
+
+            print('\r\n Contacto editado correctamente \r\n')
+
     else:
         print('No existe el contacto')
         return existe

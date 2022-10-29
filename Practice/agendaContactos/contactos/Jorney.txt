@@ -1,3 +1,0 @@
-Nombre: Jorney
-Tel: 88515454
-Categoria: Cliente
