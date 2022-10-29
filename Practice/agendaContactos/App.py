@@ -1,8 +1,7 @@
 import os
 
-from Contacto import Contacto
-from Constantes import CARPETA, EXTENSION
-
+from Utils import agregar_contacto, editar_contacto, ver_contacto, buscar_contacto, eliminar_contacto
+from Constantes import CARPETA
 
 def app():
     crear_directorio()
@@ -14,11 +13,15 @@ def app():
         opcion = int(opcion)
 
         if opcion == 1:
-            agregar_contacto()
+            res = agregar_contacto()
             preguntar = False
+            if res:
+                app()
         elif opcion == 2:
-            editar_contacto()
+            res = editar_contacto()
             preguntar = False
+            if not res:
+                app()
         elif opcion == 3:
             ver_contacto()
             preguntar = False
@@ -28,44 +31,12 @@ def app():
         elif opcion == 5:
             eliminar_contacto()
             preguntar = False
+        elif opcion == 0:
+            print('Adios')
+            return
         else:
             print('Opcion Invalida, intente de nuevo')
 
-def agregar_contacto():
-    print('Escriba los datos para el nuevo contacto')
-    nombre_contacto = input('Nombre de Contacto:\r\n')
-
-    existe = os.path.isfile(CARPETA + nombre_contacto + EXTENSION)
-
-    if not existe:
-        with open(CARPETA + nombre_contacto + EXTENSION, 'w') as archivo:
-
-            tel_contacto = input('Agrega telefono:\r\n')
-            categoria_contacto = input('Categoria contacto: \r\n')
-
-            contacto = Contacto(nombre_contacto, tel_contacto, categoria_contacto)
-
-            archivo.write('Nombre: ' + contacto.nombre + '\r\n')
-            archivo.write('Tel: ' + contacto.tel + '\r\n')
-            archivo.write('Categoria: ' + contacto.categoria + '\r\n')
-
-            print('\r\n Contacto creado correctamente \r\n')
-    else:
-        print('\r\nEse contacto ya existe! \r\n')
-        app()
-
-
-def editar_contacto():
-    print('Editar contacto')
-
-def ver_contacto():
-    print('Ver contacto')
-
-def buscar_contacto():
-    print('Buscar contacto')
-
-def eliminar_contacto():
-    print('Eliminar contacto')
 
 def mostrarMenu():
     print('Menu, digite la opcion deseada:')
@@ -74,11 +45,10 @@ def mostrarMenu():
     print('3) Ver Contacto')
     print('4) Buscar Contacto')
     print('5) Eliminar Contacto')
+    print('0) Salir')
 
 def crear_directorio():
     if not os.path.exists(CARPETA):
         os.makedirs(CARPETA)
-
-
 
 app()

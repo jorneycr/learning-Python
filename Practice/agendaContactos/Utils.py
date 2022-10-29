@@ -1,11 +1,9 @@
 import os
 
-# from App import app
 from Constantes import CARPETA, EXTENSION
 from Contacto import Contacto
 
-
-def agregar_contacto(self):
+def agregar_contacto():
         print('Escriba los datos para el nuevo contacto')
         nombre_contacto = input('Nombre de Contacto:\r\n')
 
@@ -26,6 +24,28 @@ def agregar_contacto(self):
                 print('\r\n Contacto creado correctamente \r\n')
         else:
             print('\r\nEse contacto ya existe! \r\n')
-            # app()
+            return existe
 
+def editar_contacto():
+    print('Escribe el nombre de contacto a editar')
+    nombre_anterior = input('Nombre que sea editar \r\n')
+    existe = existe_contacto(nombre_anterior)
+    if existe:
+        print('Puedes editar')
+    else:
+        print('No existe el contacto')
+        return existe
+
+
+def existe_contacto(nombre):
+    return os.path.isfile(CARPETA + nombre + EXTENSION)
+
+def ver_contacto():
+    print('Ver contacto')
+
+def buscar_contacto():
+    print('Buscar contacto')
+
+def eliminar_contacto():
+    print('Eliminar contacto')
 
