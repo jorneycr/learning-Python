@@ -1,6 +1,8 @@
 import os
 import time
 
+import expression as expression
+
 from Constantes import CARPETA, EXTENSION
 from Contacto import Contacto
 
@@ -59,12 +61,36 @@ def editar_contacto():
 def existe_contacto(nombre):
     return os.path.isfile(CARPETA + nombre + EXTENSION)
 
-def ver_contacto():
-    print('Ver contacto')
+def ver_contactos():
+    archivos = os.listdir(CARPETA)
+
+    archivos_txt = [i for i in archivos if i.endswith(EXTENSION)]
+
+    for archivo in archivos_txt:
+        with open(CARPETA + archivo) as contacto:
+            for linea in contacto:
+                print(linea.rstrip())
+            print('\r\n')
 
 def buscar_contacto():
-    print('Buscar contacto')
+    nombre = input('Seleciones el contacto que sea buscar: \r\n')
+    try:
+        with open(CARPETA + nombre + EXTENSION) as contacto:
+            print('Informacion de contacto: \r\n')
+            for linea in contacto:
+                print(linea.rstrip())
+    except IOError:
+        print('El archivo no existe!!!\r\n')
+        return True
 
 def eliminar_contacto():
-    print('Eliminar contacto')
+    nombre = input('Seleciones el contacto que sea eliminar: \r\n')
+
+    try:
+        os.remove(CARPETA + nombre + EXTENSION)
+        print('\r\n Eliminado correctamente')
+    except expression  as identifier:
+        print('Ese contacto no existe\r\n')
+        print('Agregalo como nuevo contacto\r\n')
+        agregar_contacto()
 

@@ -1,6 +1,6 @@
 import os
 
-from Utils import agregar_contacto, editar_contacto, ver_contacto, buscar_contacto, eliminar_contacto
+from Utils import agregar_contacto, editar_contacto, ver_contactos, buscar_contacto, eliminar_contacto
 from Constantes import CARPETA
 
 def app():
@@ -21,11 +21,13 @@ def app():
             editar_contacto()
             preguntar = False
         elif opcion == 3:
-            ver_contacto()
+            ver_contactos()
             preguntar = False
         elif opcion == 4:
-            buscar_contacto()
+            res = buscar_contacto()
             preguntar = False
+            if res:
+                app()
         elif opcion == 5:
             eliminar_contacto()
             preguntar = False
@@ -40,7 +42,7 @@ def mostrarMenu():
     print('Menu, digite la opcion deseada:')
     print('1) Agregar Nuevo Contacto')
     print('2) Editar Contacto')
-    print('3) Ver Contacto')
+    print('3) Mostrar Contactos')
     print('4) Buscar Contacto')
     print('5) Eliminar Contacto')
     print('0) Salir')
