@@ -13,9 +13,8 @@ class Raton(Dispositivo):
     def __str__(self):
         return f'Id {self._id_raton}, Marca: {self._marca}, Tipo_entrada: {self._tipo_entrada} \r\n'
 
+if __name__ == '__main__':
+    raton = Raton('HP','USB')
+    raton1 = Raton('Acer','USB')
 
-raton = Raton('HP','USB')
-raton1 = Raton('Acer','USB')
-
-
-print(raton, raton1)
+    print(raton, raton1)
