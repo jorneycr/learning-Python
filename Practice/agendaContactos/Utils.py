@@ -1,7 +1,4 @@
 import os
-import time
-
-import expression as expression
 
 from Constantes import CARPETA, EXTENSION
 from Contacto import Contacto
