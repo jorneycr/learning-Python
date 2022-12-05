@@ -10,3 +10,15 @@ conexion = psycopg2.connect(
 print(conexion)
 
 cursor = conexion.cursor()
+sentencia = 'SELECT * FROM persona'
+cursor.execute(sentencia)
+registro = cursor.fetchall()
+
+print(registro)
+
+cursor.close()
+conexion.close()
+
+
+
+
